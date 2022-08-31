@@ -1,0 +1,3 @@
+rootProject.name = 'rundeck-plugin-examples'
+
+include 'example-groovy-step-plugin'

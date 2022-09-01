@@ -8,20 +8,25 @@ package com.rundeck.plugin.example
  */
 
 import com.dtolabs.rundeck.core.plugins.configuration.StringRenderingConstants
-import com.rundeck.plugin.example.util.ExampleUtil
 import com.dtolabs.rundeck.plugins.step.StepPlugin
-import com.dtolabs.rundeck.core.execution.workflow.steps.StepException;
-import com.dtolabs.rundeck.core.plugins.Plugin;
-import com.dtolabs.rundeck.plugins.ServiceNameConstants;
-import com.dtolabs.rundeck.plugins.step.PluginStepContext;
+import com.dtolabs.rundeck.core.execution.workflow.steps.StepException
+import com.dtolabs.rundeck.core.plugins.Plugin
+import com.dtolabs.rundeck.plugins.ServiceNameConstants
+import com.dtolabs.rundeck.plugins.step.PluginStepContext
 import com.dtolabs.rundeck.plugins.descriptions.PluginDescription
 import com.dtolabs.rundeck.plugins.descriptions.PluginProperty
 import com.dtolabs.rundeck.plugins.descriptions.RenderingOption
 import com.dtolabs.rundeck.plugins.descriptions.RenderingOptions
-import com.rundeck.plugin.example.util.ExampleApis
-import com.rundeck.plugin.example.util.ExampleConstants
 import groovy.json.JsonOutput
 import org.rundeck.storage.api.StorageException
+
+/**
+ * If other functions are required for purposes of modularity or clarity, they should either be added to a Util Class
+ * (if generic enough), or a PluginHelper Class that is accessible to the Plugin Class.
+ */
+import com.rundeck.plugin.example.util.ExampleApis
+import com.rundeck.plugin.example.util.ExampleConstants
+import com.rundeck.plugin.example.util.ExampleUtil
 
 import static com.dtolabs.rundeck.core.plugins.configuration.StringRenderingConstants.GROUPING
 import static com.dtolabs.rundeck.core.plugins.configuration.StringRenderingConstants.GROUP_NAME
@@ -44,7 +49,7 @@ class ExampleWorkflowStepPlugin implements StepPlugin {
     /**
      * Define a name used to identify your plugin. It is a good idea to use a fully qualified package-style name.
      */
-    public static final String PLUGIN_NAME = "example-workflow-step-plugin";
+    public static final String PLUGIN_NAME = "example-workflow-step-plugin"
     public static final String PLUGIN_TITLE = "Example / Workflow Step"
     public static final String PLUGIN_DESCRIPTION = "EXAMPLE WORKFLOW STEP: Make a single call to the Rundeck API and retrieve info about projects."
 
@@ -179,7 +184,7 @@ By default, it will be collapsed in the list of properties, thanks to the '@Rend
         }
 
         /** Messages can be logged out for the user using print/println */
-        System.out.println("Example workflow step executing for project: ${projectName}");
+        System.out.println("Example workflow step executing for project: ${projectName}")
 
         /**
          * But the preferred method of logging is to write into, and then print out,
@@ -199,7 +204,7 @@ By default, it will be collapsed in the list of properties, thanks to the '@Rend
         /** Lastly, we'll clear the log. Otherwise, the next time we print, we'll print the previous entries again. */
         log.clear()
 
-        /** Cast the API Verison, if it was provided */
+        /** Cast the API Version, if it was provided */
         if (userApiVersion) {
             userApiVersionString = userApiVersion.toString()
         }

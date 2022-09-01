@@ -1,15 +1,18 @@
-package com.rundeck.plugin.example;
+package com.rundeck.plugin.example
+
+/**
+ * Dependencies:
+ * any Java SDK must be officially recognized by the vendor for that technology
+ * (e.g. AWS Java SDK, SumoLogic, Zendesk) and show reasonably recent development.  Any SDK used must have an
+ * open source license such as Apache-2 or MIT.
+ */
 
 import com.dtolabs.rundeck.core.common.INodeEntry
-import com.dtolabs.rundeck.core.execution.workflow.steps.StepException
-import com.dtolabs.rundeck.core.execution.workflow.steps.node.NodeStepException;
+import com.dtolabs.rundeck.core.execution.workflow.steps.node.NodeStepException
 import com.dtolabs.rundeck.core.plugins.Plugin
 import com.dtolabs.rundeck.core.plugins.configuration.StringRenderingConstants
-import com.rundeck.plugin.example.util.ExampleApis
-import com.rundeck.plugin.example.util.ExampleConstants
-import com.rundeck.plugin.example.util.ExampleUtil;
-import com.dtolabs.rundeck.plugins.ServiceNameConstants;
-import com.dtolabs.rundeck.plugins.step.NodeStepPlugin;
+import com.dtolabs.rundeck.plugins.ServiceNameConstants
+import com.dtolabs.rundeck.plugins.step.NodeStepPlugin
 import com.dtolabs.rundeck.plugins.step.PluginStepContext
 import com.dtolabs.rundeck.plugins.descriptions.PluginDescription
 import com.dtolabs.rundeck.plugins.descriptions.PluginProperty
@@ -17,6 +20,14 @@ import com.dtolabs.rundeck.plugins.descriptions.RenderingOption
 import com.dtolabs.rundeck.plugins.descriptions.RenderingOptions
 import groovy.json.JsonOutput
 import org.rundeck.storage.api.StorageException
+
+/**
+ * If other functions are required for purposes of modularity or clarity, they should either be added to a Util Class
+ * (if generic enough), or a PluginHelper Class that is accessible to the Plugin Class.
+ */
+import com.rundeck.plugin.example.util.ExampleApis
+import com.rundeck.plugin.example.util.ExampleConstants
+import com.rundeck.plugin.example.util.ExampleUtil
 
 import static com.dtolabs.rundeck.core.plugins.configuration.StringRenderingConstants.GROUPING
 import static com.dtolabs.rundeck.core.plugins.configuration.StringRenderingConstants.GROUP_NAME
@@ -38,7 +49,7 @@ class ExampleNodeStepPlugin implements NodeStepPlugin {
     /**
      * Define a name used to identify your plugin. It is a good idea to use a fully qualified package-style name.
      */
-    public static final String PLUGIN_NAME = "example-node-step-plugin";
+    public static final String PLUGIN_NAME = "example-node-step-plugin"
     public static final String PLUGIN_TITLE = "Example / Node Step"
     public static final String PLUGIN_DESCRIPTION = "EXAMPLE NODE STEP: Make a call to the Rundeck API and retrieve info about projects."
 
@@ -176,7 +187,7 @@ By default, it will be collapsed in the list of properties, thanks to the '@Rend
         }
 
         /** Messages can be logged out for the user using print/println */
-        System.out.println("Example node step executing on node: " + entry.getNodename());
+        System.out.println("Example node step executing on node: " + entry.getNodename())
 
         /**
         * But the preferred method of logging is to write into, and then print out,
@@ -196,7 +207,7 @@ By default, it will be collapsed in the list of properties, thanks to the '@Rend
         /** Lastly, we'll clear the log. Otherwise, the next time we print, we'll print the previous entries again. */
         log.clear()
 
-        /** Cast the API Verison, if it was provided */
+        /** Cast the API Version, if it was provided */
         if (userApiVersion) {
             userApiVersionString = userApiVersion.toString()
         }

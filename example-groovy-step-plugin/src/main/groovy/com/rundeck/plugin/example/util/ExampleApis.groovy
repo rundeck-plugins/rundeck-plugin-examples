@@ -5,6 +5,10 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 
+/**
+ * If other functions are required for purposes of modularity or clarity, they should either be added to a Util Class
+ * (if generic enough), or a PluginHelper Class that is accessible to the Plugin Class.
+ */
 class ExampleApis {
     String userRundeckBaseApiUrl
     String userRundeckApiVersion

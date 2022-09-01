@@ -1,6 +1,5 @@
 package com.rundeck.plugin.example
 
-import com.dtolabs.rundeck.core.common.Framework
 import com.dtolabs.rundeck.core.common.INodeEntry
 import com.dtolabs.rundeck.core.execution.ExecutionContext
 import com.dtolabs.rundeck.core.execution.ExecutionListener
@@ -22,7 +21,7 @@ import spock.lang.Specification
  *    * Use the Spock framework
  *    * Be named and stored correspondingly to its class
  *    *    * E.g. src/main/groovy and src/test/groovy, ExampleClass and ExampleClassSpec
- *    * Use mocking/stubbine/spies as necessary to abstract away Rundeck classes for unit tests.
+ *    * Use mocking/stubbing/spies as necessary to abstract away Rundeck classes for unit tests.
  *    * Exist for each plugin and test at a minimum that:
  *    *    * Credentials must be set
  *    *    * Keys can be pulled from key storage
@@ -30,7 +29,7 @@ import spock.lang.Specification
  */
 class ExampleNodeStepPluginSpec extends Specification {
     def "When api key at specified path does not exist"() {
-        given:
+        given: "An instance of ExampleNodeStepPlugin with mocked Rundeck classes"
         def ens = new ExampleNodeStepPlugin()
         final String userBaseApiUrl  = "http://test.local:4440"
         final Integer userApiVersion  = 41
@@ -66,16 +65,16 @@ class ExampleNodeStepPluginSpec extends Specification {
         def entry = Mock(INodeEntry) {
             getNodename() >> "node1"
         }
-        when:
+        when: "The node step plugin is executed"
         ens.executeNodeStep(context, configuration, entry)
 
-        then:
+        then: "The key should not exist at the path, and return the correct exception class"
         NodeStepException e = thrown()
         e.getMessage() == "Error accessing ${fakeKeyPath}: no resource for path"
     }
 
     def "Successfully run the executeNodeStep() method"(String nodeName, String nodePayload) {
-        given:
+        given: "An instance of ExampleNodeStepPlugin with mocked Rundeck classes"
         ExampleNodeStepPlugin ens     = new ExampleNodeStepPlugin()
         final String projectName      = 'test project'
         final String userBaseApiUrl   = "http://test.local:4440"
@@ -128,13 +127,13 @@ class ExampleNodeStepPluginSpec extends Specification {
             getNodename() >> nodeName
         }
 
-        when:
+        when: "The node step plugin is executed"
         ens.executeNodeStep(context, configuration, entry)
 
-        then:
+        then: "The API calls for the given notes should return the correct payload"
         ens.exapis.getResourceInfoByName(projectName, nodeName) == nodePayload
 
-        where:
+        where: "There are two nodes and response payloads"
         nodeName | nodePayload
         'node1'  | '{\"name\":\"node1\",\"hostname\":\"http://test.node1.local\"}'
         'node2'  | '{\"name\":\"node2\",\"hostname\":\"http://test.node2.local\"}'

@@ -33,3 +33,18 @@ field types and renderingOptions:
 * **fruit** (String)
 * **cake** (String)
 * **debug** (boolean)
+
+## Readme Guidelines
+The README for your own plugin must include the following:
+
+* Overview description of the plugin “suite” in the jar (assuming more than one plugin)
+* List of all plugins in the suite - broken down by plugin type
+* How to install and configure/set up the plugins
+  * Credential requirements and credential syntax (e.g. in project properties or as node attributes)
+  * Networking requirements (for connectivity b/w Rundeck and endpoints)
+* Standard gradle build instructions:
+  * Build with `./gradlew build` and copy the `build/libs/xxxx-plugin-X.X.X.jar` to `$RDECK_BASE/libext` folder or install via GUI
+* List of properties used in the plugins
+
+## Icon Guidelines
+* Must be square and saved to `src/main/resources/resources` as icon.png.

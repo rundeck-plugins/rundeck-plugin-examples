@@ -20,7 +20,7 @@ import spock.lang.Specification
  *    * Use the Spock framework
  *    * Be named and stored correspondingly to its class
  *    *    * E.g. src/main/groovy and src/test/groovy, ExampleClass and ExampleClassSpec
- *    * Use mocking/stubbine/spies as necessary to abstract away Rundeck classes for unit tests.
+ *    * Use mocking/stubbing/spies as necessary to abstract away Rundeck classes for unit tests.
  *    * Exist for each plugin and test at a minimum that:
  *    *    * Credentials must be set
  *    *    * Keys can be pulled from key storage
@@ -28,7 +28,7 @@ import spock.lang.Specification
  */
 class ExampleWorkflowStepPluginSpec extends Specification {
     def "When api key at specified path does not exist"() {
-        given:
+        given: "An instance of ExampleWorkflowStepPlugin with mocked Rundeck classes"
         def ews = new ExampleWorkflowStepPlugin()
         final String userBaseApiUrl  = "http://test.local:4440"
         final Integer userApiVersion  = 41
@@ -62,16 +62,16 @@ class ExampleWorkflowStepPluginSpec extends Specification {
             getLogger() >> Mock(PluginLogger)
         }
 
-        when:
+        when: "The workflow step plugin is executed"
         ews.executeStep(context, configuration)
 
-        then:
+        then: "The key should not exist at the path, and return the correct exception class"
         StepException e = thrown()
         e.message == "Error accessing ${fakeKeyPath}: no resource for path"
     }
 
-    def "Successfully run the executeNodeStep() method"() {
-        given:
+    def "Successfully run the executeStep() method"() {
+        given: "An instance of ExampleWorkflowStepPlugin with mocked Rundeck classes"
         ExampleWorkflowStepPlugin ews = new ExampleWorkflowStepPlugin()
         final String projectName      = 'test project'
         final String userBaseApiUrl   = "http://test.local:4440"
@@ -122,10 +122,10 @@ class ExampleWorkflowStepPluginSpec extends Specification {
             getLogger() >> Mock(PluginLogger)
         }
 
-        when:
+        when: "The workflow step plugin is executed"
         ews.executeStep(context, configuration)
 
-        then:
+        then: "The API call for the given project should return the correct payload"
         ews.exapis.getProjectInfoByName(projectName) == projInfoPayload
     }
 }

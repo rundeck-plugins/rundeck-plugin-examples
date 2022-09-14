@@ -3,8 +3,8 @@ package com.rundeck.plugin.example
 /**
  * Dependencies:
  * any Java SDK must be officially recognized by the vendor for that technology
- * (e.g. AWS Java SDK, SumoLogic, Zendesk) and show reasonably recent development.  Any SDK used must have an
- * open source license such as Apache-2 or MIT.
+ * (e.g. AWS Java SDK, SumoLogic, Zendesk) and show reasonably recent (within past year) development.  Any SDK used must
+ * have an open source license such as Apache-2 or MIT.
  */
 
 import com.dtolabs.rundeck.core.common.INodeEntry
@@ -40,8 +40,6 @@ import static com.dtolabs.rundeck.core.plugins.configuration.StringRenderingCons
 * <p/>
 * The provider name of this plugin is statically defined in the class. The service name makes use of {@link
 * ServiceNameConstants} to provide the known Rundeck service names.
-*
-* @author Greg Schueler <a href="mailto:greg@dtosolutions.com">greg@dtosolutions.com</a>
 */
 @Plugin(name = PLUGIN_NAME, service = ServiceNameConstants.WorkflowNodeStep)
 @PluginDescription(title = PLUGIN_TITLE, description = PLUGIN_DESCRIPTION)
@@ -71,13 +69,14 @@ class ExampleNodeStepPlugin implements NodeStepPlugin {
      *     * use KeyStorage for storage/retrieval of secrets. See 'Rundeck API Key Path' property below.
      */
     @PluginProperty(
-            title = "Rundeck API URL",
-            description = """Provide the base URL for this Rundeck instance. It will be used by the plugin to get information \
+        title = "Rundeck API URL",
+        description = """Provide the base URL for this Rundeck instance. It will be used by the plugin to get information \
 from the API. If left blank, the call will use a default base API URL.\n\n
 When carriage returns are used in the description, any part of the string after them—such as this—will also be collapsed. \
-**Markdown** can also be used in this _expanded_ block.""",
-            defaultValue = ExampleConstants.BASE_API_URL,
-            required = false
+**Markdown** can also be used in this _expanded_ block.\n\n
+Want to learn more about the Rundeck API? Check out [our docs](https://docs.rundeck.com/docs/api/rundeck-api.html).""",
+        defaultValue = ExampleConstants.BASE_API_URL,
+        required = false
     )
     @RenderingOptions(
         [

@@ -19,6 +19,7 @@ class ExampleApis {
         this.client = new OkHttpClient()
         this.headers = new Headers.Builder()
             .add('Accept', 'application/json')
+            .add('Content-Type', 'application/json')
             .add('X-Rundeck-Auth-Token', userAuthToken)
             .build()
 

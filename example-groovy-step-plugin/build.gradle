@@ -53,9 +53,9 @@ jar {
     from "$buildDir/output"
     manifest {
         attributes 'Rundeck-Plugin-Classnames': [
-            'com.dtolabs.rundeck.plugin.example.ExampleNodeStepPlugin',
-            'com.dtolabs.rundeck.plugin.example.ExampleWorkflowStepPlugin',
-            'com.dtolabs.rundeck.plugin.example.ExampleRemoteScriptNodeStepPlugin'
+            'com.rundeck.plugin.example.ExampleNodeStepPlugin',
+            'com.rundeck.plugin.example.ExampleWorkflowStepPlugin',
+            'com.rundeck.plugin.example.ExampleRemoteScriptNodeStepPlugin'
         ].join(',')
         attributes 'Rundeck-Plugin-File-Version': version
         attributes 'Rundeck-Plugin-Version': rundeckPluginVersion, 'Rundeck-Plugin-Archive': 'true'

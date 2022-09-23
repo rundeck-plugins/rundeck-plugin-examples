@@ -23,11 +23,15 @@ class ExampleApis {
             .build()
 
         if (!userBaseApiUrl) {
-            this.userRundeckBaseApiUrl = ExampleConstants.BASE_API_URL
+            userRundeckBaseApiUrl = ExampleConstants.BASE_API_URL
+        } else {
+            userRundeckBaseApiUrl = userBaseApiUrl
         }
 
         if (!userApiVersion) {
-            this.userRundeckApiVersion = ExampleConstants.API_VERSION
+            userRundeckApiVersion = ExampleConstants.API_VERSION
+        } else {
+            userRundeckApiVersion = userApiVersion
         }
     }
 

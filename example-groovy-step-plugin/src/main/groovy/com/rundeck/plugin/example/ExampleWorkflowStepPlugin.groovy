@@ -17,6 +17,7 @@ import com.dtolabs.rundeck.plugins.descriptions.PluginDescription
 import com.dtolabs.rundeck.plugins.descriptions.PluginProperty
 import com.dtolabs.rundeck.plugins.descriptions.RenderingOption
 import com.dtolabs.rundeck.plugins.descriptions.RenderingOptions
+import groovy.json.JsonBuilder
 import groovy.json.JsonOutput
 import org.rundeck.storage.api.StorageException
 

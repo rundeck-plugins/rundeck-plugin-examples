@@ -45,7 +45,7 @@ class ExampleApis {
         String nodeName
     ) throws IOException {
         String resourceUrl = "/project/${projectName}/resource/${nodeName}"
-        String fullUrl = userRundeckBaseApiUrl + userRundeckApiVersion + resourceUrl
+        String fullUrl = createFullUrl(userRundeckBaseApiUrl, userRundeckApiVersion, resourceUrl)
 
         Request request = new Request.Builder()
             .url(fullUrl)
@@ -65,7 +65,7 @@ class ExampleApis {
         String projectName
     ) throws IOException {
         String resourceUrl = "/project/${projectName}"
-        String fullUrl = userRundeckBaseApiUrl + userRundeckApiVersion + resourceUrl
+        String fullUrl = createFullUrl(userRundeckBaseApiUrl, userRundeckApiVersion, resourceUrl)
 
         Request request = new Request.Builder()
             .url(fullUrl)
@@ -75,5 +75,11 @@ class ExampleApis {
         try (Response response = client.newCall(request).execute()) {
             return response.body().string();
         }
+    }
+
+// Handle for user query path inconsistencies
+    private static String createFullUrl(String baseApiUrl, String apiVersion, String apiPath) {
+        String correctedBaseUrl = baseApiUrl.replaceAll('/$', "")
+        return correctedBaseUrl + "/" + apiVersion + apiPath
     }
 }

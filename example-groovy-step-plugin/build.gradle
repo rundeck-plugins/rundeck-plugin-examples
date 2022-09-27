@@ -1,0 +1,68 @@
+group 'com.rundeck'
+
+/**
+ * build.gradle should:
+ *    * apply the java and groovy plugins
+ *    * implement rundeck-core as a dependency
+ *    * implement groovy as a dependency if applicable
+ *    * set ext.rundeckPluginVersion to 1.2
+ *    * set ext.pluginClassNames to an array of all fully qualified class names of the plugin classes themselves
+ *      (exclude helpers, util files, etc.)
+ *    * set the Rundeck Plugin attributes
+ *
+ * Gradle wrapper versions should match the current wrapper version of Rundeck Core
+ */
+
+ext.rundeckPluginVersion='1.2'
+
+apply plugin: 'java'
+apply plugin: 'groovy'
+sourceCompatibility = 1.8
+version = '2.0.2'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+configurations {
+    pluginLibs
+
+    compile {
+        extendsFrom pluginLibs
+    }
+}
+
+dependencies {
+    implementation "org.rundeck:rundeck-core:${rundeckVersion}"
+    implementation "org.rundeck:rundeck-storage-api:${rundeckVersion}"
+    implementation "org.codehaus.groovy:groovy-all:${groovyVersion}"
+    implementation "org.codehaus.groovy:groovy-templates:${groovyVersion}"
+    pluginLibs "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    pluginLibs "com.squareup.okhttp3:okhttp:4.10.0"
+    pluginLibs "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    testImplementation "org.spockframework:spock-core:2.0-groovy-3.0"
+}
+
+task copyToLib(type: Copy) {
+    into "$buildDir/output/lib"
+    from configurations.pluginLibs
+}
+
+jar {
+    from "$buildDir/output"
+    manifest {
+        attributes 'Rundeck-Plugin-Classnames': [
+            'com.rundeck.plugin.example.ExampleNodeStepPlugin',
+            'com.rundeck.plugin.example.ExampleWorkflowStepPlugin',
+            'com.rundeck.plugin.example.ExampleRemoteScriptNodeStepPlugin'
+        ].join(',')
+        attributes 'Rundeck-Plugin-File-Version': version
+        attributes 'Rundeck-Plugin-Version': rundeckPluginVersion, 'Rundeck-Plugin-Archive': 'true'
+    }
+    dependsOn(copyToLib)
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+}

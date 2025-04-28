@@ -1,0 +1,37 @@
+version = '5.6.1-20241014'
+defaultTasks 'clean','build'
+apply plugin: 'java'
+apply plugin: 'idea'
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+ext.rundeckPluginVersion= '1.1'
+
+
+repositories {
+    mavenLocal()
+    maven{ //snapshot dependency
+        url='https://oss.sonatype.org/content/repositories/snapshots/'
+    }
+    mavenCentral()
+}
+
+dependencies {
+    implementation( [group: 'org.rundeck', name: 'rundeck-core', version: version])
+    implementation([group: 'commons-codec', name: 'commons-codec', version: "${commonsCodecVersion}", ext: 'jar'])
+    testImplementation(
+        //[group: 'junit', name: 'junit', version: '3.8.1',ext:'jar']
+    )
+}
+
+ext.pluginClassNames='org.rundeck.plugin.example.ExampleConverterPlugin'
+jar {
+    manifest {
+        attributes 'Rundeck-Plugin-Classnames': pluginClassNames
+        attributes 'Rundeck-Plugin-File-Version': version
+        attributes 'Rundeck-Plugin-Version': rundeckPluginVersion, 'Rundeck-Plugin-Archive': 'true'
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.5'
+}

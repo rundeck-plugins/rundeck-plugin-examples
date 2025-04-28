@@ -1,0 +1,30 @@
+version = '5.6.1-20241014'
+defaultTasks 'clean','build'
+apply plugin: 'java'
+apply plugin: 'idea'
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+ext.rundeckPluginVersion= '1.2'
+
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    implementation( [group: 'org.rundeck', name: 'rundeck-core', version: version,ext:'jar'])
+}
+
+ext.pluginClassNames='org.rundeck.example.plugin.ExampleJobLifecyclePlugin'
+jar {
+    manifest {
+        attributes 'Rundeck-Plugin-Classnames': pluginClassNames
+        attributes 'Rundeck-Plugin-File-Version': version
+        attributes 'Rundeck-Plugin-Version': rundeckPluginVersion, 'Rundeck-Plugin-Archive': 'true'
+    }
+}
+
+
+
+

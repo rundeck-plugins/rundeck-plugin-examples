@@ -27,10 +27,16 @@ This repository does not contain:
 ### Snyk Security Scanning
 This repository includes minimal Node.js package configuration (`package.json`) and Snyk policy (`.snyk`) files to satisfy organizational security scanning requirements, even though it contains no Node.js runtime dependencies.
 
+**Scanning Configuration:**
+- Individual example plugin projects are excluded from security scanning via `.snyk` policy
+- Known vulnerabilities in example dependencies are ignored with documented reasons
+- Only the root-level documentation repository structure is scanned for compliance
+
 **Scanning Results Interpretation:**
 - Any detected vulnerabilities relate to example/educational code only
 - Example plugins should never be deployed to production without proper security review
 - Build dependencies in individual plugin examples should be evaluated separately if used
+- Build failures in CI/CD for example projects are expected due to outdated Gradle versions and Java compatibility issues
 
 ### Security Guidelines
 

@@ -22,7 +22,33 @@ version: v1.0.0
 # - This repository itself introduces no runtime security vulnerabilities as it's documentation-only
 
 # Configuration for examples/documentation repository
-ignore: {}
+ignore:
+  # Ignore vulnerabilities in example plugin dependencies
+  # These are educational examples only, not production code
+  SNYK-JAVA-COMMONSBEANUTILS-10259368:
+    - "*":
+        reason: "Example code only - not used in production"
+        expires: "2026-12-31T23:59:59.999Z"
+  SNYK-JAVA-COMFASTERXMLJACKSONCORE-10500754:
+    - "*":
+        reason: "Example code only - not used in production"
+        expires: "2026-12-31T23:59:59.999Z"
+  SNYK-JAVA-COMFASTERXMLJACKSONCORE-7569538:
+    - "*":
+        reason: "Example code only - not used in production"
+        expires: "2026-12-31T23:59:59.999Z"
+  SNYK-JAVA-ORGYAML-2806360:
+    - "*":
+        reason: "Example code only - not used in production"
+        expires: "2026-12-31T23:59:59.999Z"
+  SNYK-JAVA-ORGYAML-6056527:
+    - "*":
+        reason: "Example code only - not used in production"
+        expires: "2026-12-31T23:59:59.999Z"
+  SNYK-JAVA-COMMONSLANG-10734077:
+    - "*":
+        reason: "Example code only - not used in production"
+        expires: "2026-12-31T23:59:59.999Z"
 
 # No patches required as this is a documentation repository with no runtime dependencies
 patch: {}
@@ -34,3 +60,8 @@ exclude:
   - "**/target/**"
   - "**/bin/**"
   - "**/.gradle/**"
+  # Exclude example plugin projects from security scanning
+  # These are educational examples only, not production code
+  - "example-*/**"
+  - "json-plugin/**"
+  - "ssh-script-plugin/**"

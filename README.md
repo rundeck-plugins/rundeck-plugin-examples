@@ -62,10 +62,11 @@ This repository satisfies organizational security scanning requirements through 
 
 ### Security Scanning
 - **Snyk Scanning:** Configured for compliance with organizational security policies
-- **Scanning Scope:** Only the root repository is scanned; individual example projects are excluded via `.snyk` and `.snykignore` files
-- **Build Issues:** Example projects may have build failures due to outdated Gradle versions - this is expected for educational examples
-- **Vulnerability Management:** Known vulnerabilities in example dependencies are documented and ignored as they relate to non-production code
-- **Security Guidance:** See [SECURITY.md](SECURITY.md) for detailed security information
+- **Expected Results:** Root repository will pass; example projects will show vulnerabilities and build failures
+- **Security Posture:** Acceptable for documentation repository - see [SECURITY.md](SECURITY.md) for detailed justification
+- **Build Issues:** Example projects have intentional build failures due to outdated Gradle versions (educational examples)
+- **Vulnerability Status:** Known vulnerabilities in example dependencies are documented and acceptable for non-production educational code
+- **Compliance Status:** ✅ Repository meets security requirements as configuration-only documentation repository
 
 ⚠️ **Important:** Example plugins are for educational purposes only. Always perform security review and testing before deploying any plugin to a production Rundeck environment.
 

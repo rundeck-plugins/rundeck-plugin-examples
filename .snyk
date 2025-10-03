@@ -1,0 +1,36 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.0.0
+
+# REPOSITORY TYPE: Configuration-only documentation repository
+# SECURITY POSTURE: This repository contains only example code, documentation, and configuration files
+# RUNTIME DEPENDENCIES: None - this repository does not deploy or execute in production environments
+#
+# This .snyk file serves to:
+# 1. Satisfy organizational Snyk scanning requirements
+# 2. Document that this is a configuration-only repository with Rundeck plugin examples
+# 3. Provide context for security teams reviewing scan results
+#
+# The repository contains:
+# - Rundeck plugin examples in various languages (Java, Groovy, scripts)
+# - Build configuration files (Gradle, Maven)
+# - Documentation and README files
+# - No production runtime dependencies or executable Node.js code that would be deployed
+#
+# Security considerations:
+# - Example plugins are for educational purposes and should not be deployed to production without security review
+# - Build dependencies in individual plugin examples should be reviewed separately if used
+# - This repository itself introduces no runtime security vulnerabilities as it's documentation-only
+
+# Configuration for examples/documentation repository
+ignore: {}
+
+# No patches required as this is a documentation repository with no runtime dependencies
+patch: {}
+
+# Language settings - primarily for documentation scanning compliance
+exclude:
+  # Exclude build artifacts and temporary files from scanning
+  - "**/build/**"
+  - "**/target/**"
+  - "**/bin/**"
+  - "**/.gradle/**"

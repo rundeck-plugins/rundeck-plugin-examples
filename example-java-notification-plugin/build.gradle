@@ -1,4 +1,4 @@
-version = '5.6.1-20241014'
+version = '5.15.0-20250902'
 defaultTasks 'clean','build'
 apply plugin: 'java-library'
 apply plugin: 'idea'
@@ -12,8 +12,18 @@ repositories {
     mavenCentral()
 }
 
+configurations.all {
+    resolutionStrategy {
+        force 'org.apache.commons:commons-lang3:3.18.0'
+    }
+}
+
 dependencies {
-    implementation( 'org.rundeck:rundeck-core:5.6.1-20241014')
+    implementation('org.rundeck:rundeck-core:5.15.0-20250902') {
+        exclude group: 'commons-lang', module: 'commons-lang'
+    }
+    // Override commons-lang transitive dependency to fix vulnerabilities
+    implementation( 'org.apache.commons:commons-lang3:3.18.0')
     testImplementation(
         [group: 'junit', name: 'junit', version: '3.8.1',ext:'jar']
     )

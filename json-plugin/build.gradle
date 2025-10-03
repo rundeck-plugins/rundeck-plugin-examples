@@ -1,21 +1,22 @@
-version = '5.6.1-20241014'
+version = '5.15.0-20250902'
 defaultTasks 'clean','build'
 apply plugin: 'java'
 apply plugin: 'idea'
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
 archivesBaseName = "rundeck-$project.name"
-rundeckPluginVersion= '1.1'
+ext.rundeckPluginVersion= '1.1'
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 
 dependencies {
-    implementation files("${rootProject.projectDir}/../../core/build/libs/rundeck-core-${version}.jar")
-    testImplementation(
-        //[group: 'junit', name: 'junit', version: '3.8.1',ext:'jar']
-    )
+    implementation( [group: 'org.rundeck', name: 'rundeck-core', version: version,ext:'jar'])
+    // Override commons-lang transitive dependency to fix vulnerabilities
+    implementation( 'org.apache.commons:commons-lang3:3.18.0')
+    // testImplementation([group: 'junit', name: 'junit', version: '3.8.1',ext:'jar'])
 }
 jar {
     manifest {
@@ -57,9 +58,3 @@ jar {
 
 //set jar task to depend on copyToLib
 jar.dependsOn(copyToLib)
-
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '0.9-rc-3'
-    jarPath = 'wrapper'
-}

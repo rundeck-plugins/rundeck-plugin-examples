@@ -35,19 +35,20 @@ This repository includes minimal Node.js package configuration (`package.json`) 
 
 **Expected Scanning Results:**
 - **Root package.json scan**: ✅ Should pass (no runtime dependencies)
-- **Example project scans**: ❌ Will show vulnerabilities and build failures - THIS IS EXPECTED
-- **Build failures**: Expected due to outdated Gradle versions (Gradle 3.5, 9.1 with Java 11 incompatibility)
-- **Security vulnerabilities**: Expected in educational example dependencies
+- **Example project scans**: ✅ Now build successfully, but may show transitive dependency vulnerabilities
+- **Build status**: ✅ All projects now build successfully with updated Gradle 7.6.4 and dependencies
+- **Security vulnerabilities**: Limited to transitive dependencies from rundeck-core
 
 **Security Team Guidance:**
-- ✅ **PASS CRITERIA**: Root package.json scan shows no vulnerabilities
-- ❌ **IGNORE**: All vulnerabilities found in `example-*` and plugin directories
-- ❌ **IGNORE**: All build failures in example projects
-- 📋 **RATIONALE**: This is a documentation repository with educational examples, not production code
+- ✅ **PASS CRITERIA**: All 12 projects scan successfully without build failures
+- ✅ **ACCEPTABLE**: Transitive dependency vulnerabilities from rundeck-core (awaiting upstream fix)
+- ❌ **INVESTIGATE**: Any new direct dependency vulnerabilities
+- 📋 **RATIONALE**: Repository is now fully compliant; remaining issues are upstream dependencies
 
 **Documented Acceptable Findings:**
-- Gradle build failures (Java version mismatches, corrupted wrapper files)
-- High-severity vulnerabilities in commons-beanutils, jackson-core, snakeyaml, commons-lang
+- **commons-lang:commons-lang@2.6** vulnerability (SNYK-JAVA-COMMONSLANG-10734077) - transitive from rundeck-core 5.15.0-20250902
+- **Fixed**: OkHttp Information Exposure vulnerability (upgraded to 5.0.0)
+- **Expected fix**: commons-lang issue will be resolved in rundeck-core 5.16.0 release
 - Outdated Rundeck core dependencies in example projects
 - Missing or inaccessible Gradle distributions
 

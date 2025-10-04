@@ -3,6 +3,8 @@
 !.github
 !.gitignore
 !.circleci
+!.snyk
+!.snykignore
 *~
 *.swp
 *.iws
@@ -10,7 +12,7 @@
 *.iml
 /db/
 /lib/
-/bin/
+**/bin/
 **/node_modules
 **/build
 **/*/build

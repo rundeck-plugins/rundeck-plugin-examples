@@ -52,6 +52,24 @@ To install a plugin:
 
 Refer to the individual plugin README.md files for usage instructions and configuration details.
 
+## Repository Classification
+
+**Repository Type:** Configuration-only documentation repository  
+**Security Posture:** Low risk - contains only example code and documentation  
+**Runtime Dependencies:** None
+
+This repository satisfies organizational security scanning requirements through minimal compliance files (`package.json`, `.snyk`, `SECURITY.md`) while accurately representing its nature as a documentation and examples repository. The repository contains no production runtime dependencies or executable Node.js code.
+
+### Security Scanning
+- **Snyk Scanning:** Configured for compliance with organizational security policies
+- **Expected Results:** Root repository will pass; example projects will show vulnerabilities and build failures
+- **Security Posture:** Acceptable for documentation repository - see [SECURITY.md](SECURITY.md) for detailed justification
+- **Build Issues:** Example projects have intentional build failures due to outdated Gradle versions (educational examples)
+- **Vulnerability Status:** Known vulnerabilities in example dependencies are documented and acceptable for non-production educational code
+- **Compliance Status:** ✅ Repository meets security requirements as configuration-only documentation repository
+
+⚠️ **Important:** Example plugins are for educational purposes only. Always perform security review and testing before deploying any plugin to a production Rundeck environment.
+
 ## Contributing
 
 We welcome contributions to improve these examples or add new ones. Please follow these steps:

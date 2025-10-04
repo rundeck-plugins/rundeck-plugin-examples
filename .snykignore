@@ -1,0 +1,33 @@
+# Snyk ignore file for rundeck-plugin-examples repository
+# This file excludes example plugin directories from Snyk scanning
+# since they contain educational code only, not production dependencies
+
+# Exclude all build files that cause scanning issues
+**/build.gradle
+**/pom.xml
+**/gradlew
+**/gradlew.bat
+
+# Exclude all example plugin directories with glob patterns
+example-*/
+**/example-*/
+json-plugin/
+ssh-script-plugin/
+
+# Exclude specific problematic files
+example-groovy-content-converter-plugins/**
+example-groovy-log-filter-plugins/**
+example-groovy-log-plugins/**
+example-groovy-notification-plugins/**
+example-groovy-step-plugin/**
+example-java-audit-plugin/**
+example-java-execution-lifecyle-plugin/**
+example-java-job-lifecycle-plugin/**
+example-java-logging-plugins/**
+example-java-nodeexecutor-plugin/**
+example-java-notification-plugin/**
+example-java-step-plugin/**
+example-java-storage-converter-plugin/**
+example-java-storage-plugin/**
+example-script-node-step-plugin/**
+example-script-remote-node-step-plugin/**

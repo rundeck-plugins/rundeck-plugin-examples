@@ -1,4 +1,4 @@
-version = '5.6.1-20241014'
+version = '5.15.0-20250902'
 defaultTasks 'clean','build'
 apply plugin: 'java'
 apply plugin: 'idea'
@@ -14,9 +14,9 @@ repositories {
 
 dependencies {
     implementation( [group: 'org.rundeck', name: 'rundeck-core', version: version,ext:'jar'])
-    testImplementation(
-        //[group: 'junit', name: 'junit', version: '3.8.1',ext:'jar']
-    )
+    // Override commons-lang transitive dependency to fix vulnerabilities
+    implementation( "org.apache.commons:commons-lang3:${commonsLang3Version}")
+    // testImplementation([group: 'junit', name: 'junit', version: '3.8.1',ext:'jar'])
 }
 
 ext.pluginClassNames='com.dtolabs.rundeck.plugin.example.ExampleStreamingLogWriterPlugin,com.dtolabs.rundeck.plugin.example.ExampleExecutionFileStoragePlugin'
@@ -27,8 +27,4 @@ jar {
         attributes 'Rundeck-Plugin-File-Version': version
         attributes 'Rundeck-Plugin-Version': rundeckPluginVersion, 'Rundeck-Plugin-Archive': 'true'
     }
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '1.0'
 }

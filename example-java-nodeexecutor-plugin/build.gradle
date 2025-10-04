@@ -15,7 +15,7 @@ repositories {
 dependencies {
     implementation( [group: 'org.rundeck', name: 'rundeck-core', version: version,ext:'jar'])
     // Override commons-lang transitive dependency to fix vulnerabilities
-    implementation( 'org.apache.commons:commons-lang3:3.18.0')
+    implementation( "org.apache.commons:commons-lang3:${commonsLang3Version}")
     // testImplementation([group: 'junit', name: 'junit', version: '3.8.1',ext:'jar'])
 }
 

@@ -14,16 +14,16 @@ repositories {
 
 configurations.all {
     resolutionStrategy {
-        force 'org.apache.commons:commons-lang3:3.18.0'
+        force "org.apache.commons:commons-lang3:${commonsLang3Version}"
     }
 }
 
 dependencies {
-    implementation('org.rundeck:rundeck-core:5.15.0-20250902') {
+    implementation("org.rundeck:rundeck-core:${rundeckVersion}") {
         exclude group: 'commons-lang', module: 'commons-lang'
     }
     // Override commons-lang transitive dependency to fix vulnerabilities
-    implementation( 'org.apache.commons:commons-lang3:3.18.0')
+    implementation( "org.apache.commons:commons-lang3:${commonsLang3Version}")
     testImplementation(
         [group: 'junit', name: 'junit', version: '3.8.1',ext:'jar']
     )

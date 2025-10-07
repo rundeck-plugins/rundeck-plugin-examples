@@ -13,12 +13,30 @@
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
+  <dependencyManagement>
+    <dependencies>
+      <!-- Force commons-lang3 version to override any transitive commons-lang -->
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>3.18.0</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <dependencies>
     <dependency>
       <groupId>org.rundeck</groupId>
       <artifactId>rundeck-core</artifactId>
       <version>5.15.0-20250902</version>
       <scope>provided</scope>
+      <exclusions>
+        <!-- Exclude vulnerable commons-lang 2.6 and replace with commons-lang3 -->
+        <exclusion>
+          <groupId>commons-lang</groupId>
+          <artifactId>commons-lang</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <!-- Override commons-lang transitive dependency to fix vulnerabilities -->
     <dependency>

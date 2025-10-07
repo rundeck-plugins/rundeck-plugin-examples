@@ -34,8 +34,14 @@ configurations {
 }
 
 dependencies {
-    implementation "org.rundeck:rundeck-core:${rundeckVersion}"
-    implementation "org.rundeck:rundeck-storage-api:${rundeckVersion}"
+    implementation("org.rundeck:rundeck-core:${rundeckVersion}") {
+        // Exclude vulnerable commons-lang 2.6 and replace with commons-lang3
+        exclude group: 'commons-lang', module: 'commons-lang'
+    }
+    implementation("org.rundeck:rundeck-storage-api:${rundeckVersion}") {
+        // Exclude vulnerable commons-lang 2.6 and replace with commons-lang3
+        exclude group: 'commons-lang', module: 'commons-lang'
+    }
     implementation "org.codehaus.groovy:groovy-all:${groovyVersion}"
     implementation "org.codehaus.groovy:groovy-templates:${groovyVersion}"
     // Override commons-lang transitive dependency to fix vulnerabilities

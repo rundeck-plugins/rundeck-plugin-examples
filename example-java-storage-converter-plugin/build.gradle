@@ -1,4 +1,4 @@
-version = '5.15.0-20250902'
+version = '5.16.0-20251006'
 defaultTasks 'clean','build'
 apply plugin: 'java'
 apply plugin: 'idea'
@@ -17,7 +17,10 @@ repositories {
 }
 
 dependencies {
-    implementation( [group: 'org.rundeck', name: 'rundeck-core', version: version])
+    implementation( [group: 'org.rundeck', name: 'rundeck-core', version: version]) {
+        // Exclude vulnerable commons-lang 2.6 and replace with commons-lang3
+        exclude group: 'commons-lang', module: 'commons-lang'
+    }
     implementation([group: 'commons-codec', name: 'commons-codec', version: "${commonsCodecVersion}", ext: 'jar'])
     // Override commons-lang transitive dependency to fix vulnerabilities
     implementation( "org.apache.commons:commons-lang3:${commonsLang3Version}")

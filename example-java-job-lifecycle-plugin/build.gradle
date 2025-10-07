@@ -13,7 +13,10 @@ repositories {
 }
 
 dependencies {
-    implementation( [group: 'org.rundeck', name: 'rundeck-core', version: version,ext:'jar'])
+    implementation([group: 'org.rundeck', name: 'rundeck-core', version: version, ext: 'jar']) {
+        // Exclude vulnerable commons-lang 2.6
+        exclude group: 'commons-lang', module: 'commons-lang'
+    }
 }
 
 ext.pluginClassNames='org.rundeck.example.plugin.ExampleJobLifecyclePlugin'

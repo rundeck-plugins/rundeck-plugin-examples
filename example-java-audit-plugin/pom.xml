@@ -17,17 +17,30 @@
     <dependency>
       <groupId>org.rundeck</groupId>
       <artifactId>rundeck-core</artifactId>
-      <version>5.6.1-20241014</version>
+      <version>5.15.0-20250902</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- Override commons-lang transitive dependency to fix vulnerabilities -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.18.0</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
 
   <build>
     <plugins>
+      <!-- Ensure Maven dependency plugin version 2.2+ for Snyk compatibility -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.8.0</version>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>2.4</version>
+        <version>3.4.2</version>
         <configuration>
           <outputDirectory>${project.build.directory}</outputDirectory>
           <archive>

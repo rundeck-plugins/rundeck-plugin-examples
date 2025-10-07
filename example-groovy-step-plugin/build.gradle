@@ -38,10 +38,12 @@ dependencies {
     implementation "org.rundeck:rundeck-storage-api:${rundeckVersion}"
     implementation "org.codehaus.groovy:groovy-all:${groovyVersion}"
     implementation "org.codehaus.groovy:groovy-templates:${groovyVersion}"
+    // Override commons-lang transitive dependency to fix vulnerabilities
+    implementation "org.apache.commons:commons-lang3:${commonsLang3Version}"
     pluginLibs "com.squareup.retrofit2:retrofit:${retrofitVersion}"
-    pluginLibs "com.squareup.okhttp3:okhttp:4.10.0"
-    pluginLibs "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
-    testImplementation "org.spockframework:spock-core:2.0-groovy-3.0"
+    pluginLibs "com.squareup.okhttp3:okhttp:${okhttpVersion}"  // Updated to 5.0.0 to fix SNYK-JAVA-ORGJETBRAINSKOTLIN-2393744
+    pluginLibs "com.squareup.retrofit2:converter-gson:${retrofitConverterGsonVersion}"  // Updated to fix security vulnerabilities
+    testImplementation "org.spockframework:spock-core:${spockVersion}"
 }
 
 task copyToLib(type: Copy) {

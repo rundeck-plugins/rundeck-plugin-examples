@@ -1,0 +1,32 @@
+{
+  "name": "rundeck-plugin-examples",
+  "version": "1.0.0",
+  "description": "Configuration-only repository containing Rundeck plugin examples and documentation. This repository does not contain production runtime dependencies or executable Node.js code.",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rundeck-plugins/rundeck-plugin-examples.git"
+  },
+  "keywords": [
+    "rundeck",
+    "plugins",
+    "examples",
+    "documentation",
+    "configuration"
+  ],
+  "license": "Apache-2.0",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "security-scan": "echo 'This is a configuration-only repository with no runtime dependencies to scan'",
+    "test": "echo 'No tests required for documentation repository'"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "config": {
+    "repository_type": "documentation",
+    "security_posture": "config-only",
+    "runtime_dependencies": false
+  }
+}

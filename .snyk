@@ -1,0 +1,67 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.0.0
+
+# REPOSITORY TYPE: Configuration-only documentation repository
+# SECURITY POSTURE: This repository contains only example code, documentation, and configuration files
+# RUNTIME DEPENDENCIES: None - this repository does not deploy or execute in production environments
+#
+# This .snyk file serves to:
+# 1. Satisfy organizational Snyk scanning requirements
+# 2. Document that this is a configuration-only repository with Rundeck plugin examples
+# 3. Provide context for security teams reviewing scan results
+#
+# The repository contains:
+# - Rundeck plugin examples in various languages (Java, Groovy, scripts)
+# - Build configuration files (Gradle, Maven)
+# - Documentation and README files
+# - No production runtime dependencies or executable Node.js code that would be deployed
+#
+# Security considerations:
+# - Example plugins are for educational purposes and should not be deployed to production without security review
+# - Build dependencies in individual plugin examples should be reviewed separately if used
+# - This repository itself introduces no runtime security vulnerabilities as it's documentation-only
+
+# Configuration for examples/documentation repository
+ignore:
+  # Ignore vulnerabilities in example plugin dependencies
+  # These are educational examples only, not production code
+  SNYK-JAVA-COMMONSBEANUTILS-10259368:
+    - "*":
+        reason: "Example code only - not used in production"
+        expires: "2026-12-31T23:59:59.999Z"
+  SNYK-JAVA-COMFASTERXMLJACKSONCORE-10500754:
+    - "*":
+        reason: "Example code only - not used in production"
+        expires: "2026-12-31T23:59:59.999Z"
+  SNYK-JAVA-COMFASTERXMLJACKSONCORE-7569538:
+    - "*":
+        reason: "Example code only - not used in production"
+        expires: "2026-12-31T23:59:59.999Z"
+  SNYK-JAVA-ORGYAML-2806360:
+    - "*":
+        reason: "Example code only - not used in production"
+        expires: "2026-12-31T23:59:59.999Z"
+  SNYK-JAVA-ORGYAML-6056527:
+    - "*":
+        reason: "Example code only - not used in production"
+        expires: "2026-12-31T23:59:59.999Z"
+  SNYK-JAVA-COMMONSLANG-10734077:
+    - "*":
+        reason: "Example code only - not used in production"
+        expires: "2026-12-31T23:59:59.999Z"
+
+# No patches required as this is a documentation repository with no runtime dependencies
+patch: {}
+
+# Language settings - primarily for documentation scanning compliance
+exclude:
+  # Exclude build artifacts and temporary files from scanning
+  - "**/build/**"
+  - "**/target/**"
+  - "**/bin/**"
+  - "**/.gradle/**"
+  # Exclude example plugin projects from security scanning
+  # These are educational examples only, not production code
+  - "example-*/**"
+  - "json-plugin/**"
+  - "ssh-script-plugin/**"

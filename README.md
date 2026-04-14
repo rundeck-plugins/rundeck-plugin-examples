@@ -1,6 +1,6 @@
 # Rundeck Plugin Examples
 
-This repository serves as a comprehensive knowledge base for developing Rundeck plugins. It includes a variety of example plugins, each demonstrating best practices and adhering to the latest [Plugin Development Guidelines](https://pagerduty.atlassian.net/wiki/spaces/RUNDECK/pages/2878472445/Workflow+Step+Node+Step+Plugins+Development+Guidelines).
+This repository serves as a comprehensive knowledge base for developing Rundeck plugins.
 
 These examples are designed to help you understand, edit, and build plugins for testing purposes.
 

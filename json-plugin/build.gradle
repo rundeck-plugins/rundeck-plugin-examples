@@ -1,9 +1,9 @@
-version = '5.15.0-20250902'
+version = '5.20.0-20260402'
 defaultTasks 'clean','build'
 apply plugin: 'java'
 apply plugin: 'idea'
-sourceCompatibility = JavaVersion.VERSION_11
-targetCompatibility = JavaVersion.VERSION_11
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 archivesBaseName = "rundeck-$project.name"
 ext.rundeckPluginVersion= '1.1'
 

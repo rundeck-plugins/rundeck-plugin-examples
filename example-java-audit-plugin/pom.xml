@@ -19,7 +19,7 @@
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-lang3</artifactId>
-        <version>3.17.0</version>
+        <version>3.18.0</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -28,7 +28,7 @@
     <dependency>
       <groupId>org.rundeck</groupId>
       <artifactId>rundeck-core</artifactId>
-      <version>5.15.0-20250902</version>
+      <version>5.20.0-20260402</version>
       <scope>provided</scope>
       <exclusions>
         <!-- Exclude vulnerable commons-lang 2.6 and replace with commons-lang3 -->
@@ -42,7 +42,7 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
-      <version>3.17.0</version>
+      <version>3.18.0</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>

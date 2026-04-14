@@ -1,4 +1,4 @@
-version = '5.16.0-20251006'
+version = '5.20.0-20260402'
 defaultTasks 'clean','build'
 apply plugin: 'java'
 apply plugin: 'idea'

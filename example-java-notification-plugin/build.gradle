@@ -19,7 +19,12 @@ configurations.all {
 }
 
 dependencies {
-    implementation("org.rundeck:rundeck-core:${rundeckVersion}") {
+    compileOnly platform('com.fasterxml.jackson:jackson-bom:2.21.2')
+    testImplementation platform('com.fasterxml.jackson:jackson-bom:2.21.2')
+    compileOnly("org.rundeck:rundeck-core:${rundeckVersion}") {
+        exclude group: 'commons-lang', module: 'commons-lang'
+    }
+    testImplementation("org.rundeck:rundeck-core:${rundeckVersion}") {
         exclude group: 'commons-lang', module: 'commons-lang'
     }
     // Override commons-lang transitive dependency to fix vulnerabilities

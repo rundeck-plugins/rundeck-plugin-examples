@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    implementation([group: 'org.rundeck', name: 'rundeck-core', version: version, ext: 'jar']) {
+    compileOnly([group: 'org.rundeck', name: 'rundeck-core', version: version, ext: 'jar']) {
         // Exclude vulnerable commons-lang 2.6 and replace with commons-lang3
         exclude group: 'commons-lang', module: 'commons-lang'
     }

@@ -3,7 +3,7 @@ group 'com.rundeck'
 /**
  * build.gradle should:
  *    * apply the java and groovy plugins
- *    * implement rundeck-core as a dependency
+ *    * use compileOnly for rundeck-core (provided by Rundeck at runtime; testImplementation for tests)
  *    * implement groovy as a dependency if applicable
  *    * set ext.rundeckPluginVersion to 1.2
  *    * set ext.pluginClassNames to an array of all fully qualified class names of the plugin classes themselves
@@ -34,12 +34,20 @@ configurations {
 }
 
 dependencies {
-    implementation("org.rundeck:rundeck-core:${rundeckVersion}") {
+    compileOnly platform('com.fasterxml.jackson:jackson-bom:2.21.2')
+    testImplementation platform('com.fasterxml.jackson:jackson-bom:2.21.2')
+    compileOnly("org.rundeck:rundeck-core:${rundeckVersion}") {
         // Exclude vulnerable commons-lang 2.6 and replace with commons-lang3
         exclude group: 'commons-lang', module: 'commons-lang'
     }
-    implementation("org.rundeck:rundeck-storage-api:${rundeckVersion}") {
+    compileOnly("org.rundeck:rundeck-storage-api:${rundeckVersion}") {
         // Exclude vulnerable commons-lang 2.6 and replace with commons-lang3
+        exclude group: 'commons-lang', module: 'commons-lang'
+    }
+    testImplementation("org.rundeck:rundeck-core:${rundeckVersion}") {
+        exclude group: 'commons-lang', module: 'commons-lang'
+    }
+    testImplementation("org.rundeck:rundeck-storage-api:${rundeckVersion}") {
         exclude group: 'commons-lang', module: 'commons-lang'
     }
     implementation "org.codehaus.groovy:groovy-all:${groovyVersion}"

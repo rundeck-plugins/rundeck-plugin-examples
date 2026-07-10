@@ -16,6 +16,15 @@ repositories {
     mavenCentral()
 }
 
+configurations.all {
+    resolutionStrategy {
+        // Force patched Jackson across every configuration so scanners see the
+        // fixed version regardless of the transitive path (rundeck-core, retrofit converter, etc.)
+        force "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+        force "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
+    }
+}
+
 dependencies {
     compileOnly platform('com.fasterxml.jackson:jackson-bom:2.22.1')
     compileOnly( [group: 'org.rundeck', name: 'rundeck-core', version: version]) {

@@ -15,6 +15,10 @@ repositories {
 configurations.all {
     resolutionStrategy {
         force "org.apache.commons:commons-lang3:${commonsLang3Version}"
+        // Force patched Jackson across every configuration so scanners see the
+        // fixed version regardless of the transitive path (rundeck-core, retrofit converter, etc.)
+        force "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+        force "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
     }
 }
 

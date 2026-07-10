@@ -13,6 +13,15 @@ repositories {
     mavenCentral()
 }
 
+configurations.all {
+    resolutionStrategy {
+        // Force patched Jackson across every configuration so scanners see the
+        // fixed version regardless of the transitive path (rundeck-core, retrofit converter, etc.)
+        force "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+        force "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
+    }
+}
+
 dependencies {
     compileOnly([group: 'org.rundeck', name: 'rundeck-core', version: version, ext: 'jar']) {
         // Exclude vulnerable commons-lang 2.6 and replace with commons-lang3

@@ -34,8 +34,8 @@ configurations {
 }
 
 dependencies {
-    compileOnly platform('com.fasterxml.jackson:jackson-bom:2.21.2')
-    testImplementation platform('com.fasterxml.jackson:jackson-bom:2.21.2')
+    compileOnly platform('com.fasterxml.jackson:jackson-bom:2.22.1')
+    testImplementation platform('com.fasterxml.jackson:jackson-bom:2.22.1')
     compileOnly("org.rundeck:rundeck-core:${rundeckVersion}") {
         // Exclude vulnerable commons-lang 2.6 and replace with commons-lang3
         exclude group: 'commons-lang', module: 'commons-lang'

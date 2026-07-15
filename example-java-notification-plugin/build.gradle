@@ -34,7 +34,7 @@ dependencies {
     // Override commons-lang transitive dependency to fix vulnerabilities
     implementation( "org.apache.commons:commons-lang3:${commonsLang3Version}")
     testImplementation(
-        [group: 'junit', name: 'junit', version: '3.8.1',ext:'jar']
+        [group: 'junit', name: 'junit', version: '4.13.2',ext:'jar']
     )
 }
 

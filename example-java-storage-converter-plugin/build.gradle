@@ -6,7 +6,7 @@ sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 ext.rundeckPluginVersion= '1.1'
 // Define commons codec version
-ext.commonsCodecVersion = '1.17.1'
+ext.commonsCodecVersion = '1.22.0'
 
 repositories {
     mavenLocal()

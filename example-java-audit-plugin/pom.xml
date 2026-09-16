@@ -35,7 +35,7 @@
     <dependency>
       <groupId>org.rundeck</groupId>
       <artifactId>rundeck-core</artifactId>
-      <version>6.1.0-20260803</version>
+      <version>6.2.1-20260909</version>
       <scope>provided</scope>
       <exclusions>
         <!-- Exclude vulnerable commons-lang 2.6 and replace with commons-lang3 -->
